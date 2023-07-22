@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+        <span>Alianza</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+
+        <mat-list>
+            <mat-list-item>
+                <button mat-button (click)="opened=!opened">
+                    <mat-icon>person</mat-icon><a routerLink="/clientes" class="texto">Client</a>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button (click)="opened=!opened">
+                    <mat-icon>person</mat-icon><a routerLink="/otros" class="texto" >Client look history</a>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button (click)="opened=!opened">
+                    <mat-icon>person</mat-icon><a routerLink="/otros" class="texto">Emergency PIN configuration</a>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button (click)="opened=!opened">
+                    <mat-icon>person</mat-icon><a routerLink="/otros" class="texto">Emergency PIN history</a>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  

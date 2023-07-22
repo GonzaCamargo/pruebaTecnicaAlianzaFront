@@ -1,0 +1,63 @@
+
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row mt20 ml20 mr20 mb20">
+            <div class="col-md-6 offset-md-3">
+                <mat-card>
+                    <mat-card-content>
+                        <h1 class="text-center" *ngIf="!esModificar">Create new client</h1>
+                        <h1 class="text-center" *ngIf="esModificar">UpDate new client</h1>
+
+                        <form action="" [formGroup]="formularioCliente">
+                            <mat-form-field class="full-width" appearance="outline" *ngIf="esModificar">
+                                <mat-label>Id Client</mat-label>
+                                <input matInput placeholder="Type your name" formControlName="idCliente" [readonly]="false">
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Type your name" formControlName="nombreCliente">
+                            </mat-form-field>
+                        
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Phone</mat-label>
+                                <input matInput placeholder="Type your phone" formControlName="telefonoCliente">
+                            </mat-form-field>
+                        
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>E-mail</mat-label>
+                                <input matInput placeholder="Type your E-mail" formControlName="correoCliente">
+                            </mat-form-field>
+                        
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Strat date</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="fechaInicioCliente">
+                                <mat-hint>DD/MM/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>End date</mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="fechaFinCliente">
+                                <mat-hint>DD/MM/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                              
+                            <div class="container text-center">
+                                <button mat-stroked-button color="primary" (click)='agregarCliente()' *ngIf="!esModificar">Ok</button>
+                                <button mat-stroked-button color="primary" (click)='modificarCliente()' *ngIf="esModificar">Ok</button>
+                            </div>
+                        </form>
+                        
+                    </mat-card-content>
+                    
+                </mat-card>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
