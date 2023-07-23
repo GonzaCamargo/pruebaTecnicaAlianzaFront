@@ -30,6 +30,7 @@ export class FormularioClienteComponent implements OnInit {
   @Output() informacion = new EventEmitter<void>();
   formularioCliente: FormGroup;
   esModificar:boolean = false;
+  validarFecha: boolean = false;
 
   constructor(private fb:FormBuilder, private clienteService: ClienteService, public dialogRef: MatDialogRef<FormularioClienteComponent>, 
     @Inject(MAT_DIALOG_DATA) public data:Cliente ){
@@ -65,10 +66,18 @@ export class FormularioClienteComponent implements OnInit {
       cliente.fechaInicioCliente = this.formularioCliente.get('fechaInicioCliente')?.value;
       cliente.fechaFinCliente = this.formularioCliente.get('fechaFinCliente')?.value;
 
-      this.clienteService.agregarCliente(cliente).subscribe(res=>{
-        this.formularioCliente.reset();
-        this.dialogRef.close()
-      })
+      debugger
+
+      if (this.formularioCliente.get('fechaFinCliente')?.value < this.formularioCliente.get('fechaInicioCliente')?.value) {
+        this.validarFecha = true;
+      }else{
+        this.clienteService.agregarCliente(cliente).subscribe(res=>{
+          this.formularioCliente.reset();
+          this.dialogRef.close()
+        })
+      }
+
+      
     }
   }
 
@@ -83,11 +92,24 @@ export class FormularioClienteComponent implements OnInit {
       cliente.fechaInicioCliente = this.formularioCliente.get('fechaInicioCliente')?.value;
       cliente.fechaFinCliente = this.formularioCliente.get('fechaFinCliente')?.value;
 
+      debugger
 
-      this.clienteService.modificarCliente(cliente).subscribe(res=>{
-        this.formularioCliente.reset();
-        this.dialogRef.close();
-      })
+      console.log(cliente.fechaInicioCliente);
+      console.log(cliente.fechaFinCliente);
+
+      const date1 = new Date(cliente.fechaInicioCliente);
+      const date2 = new Date(cliente.fechaFinCliente);
+      
+      
+
+      if (date2 < date1) {
+        this.validarFecha = true;
+      }else{
+        this.clienteService.modificarCliente(cliente).subscribe(res=>{
+          this.formularioCliente.reset();
+          this.dialogRef.close();
+        })
+      }
     }
   }
 

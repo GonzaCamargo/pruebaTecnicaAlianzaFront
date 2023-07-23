@@ -44,6 +44,7 @@
                                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2></mat-datepicker>
                             </mat-form-field>
+                            <mat-error *ngIf="validarFecha">End date must not be greater than start date.</mat-error>
                               
                             <div class="container text-center">
                                 <button mat-stroked-button color="primary" (click)='agregarCliente()' *ngIf="!esModificar">Ok</button>
